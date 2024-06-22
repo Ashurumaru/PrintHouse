@@ -1,0 +1,107 @@
+﻿<Page x:Class="MyPracticeApp.Pages.EmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyPracticeApp.Pages"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="https://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      Title="EmployeePage">
+
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Сотрудники" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"
+                   HorizontalAlignment="Left" Foreground="#121518"/>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0 0 0 0" VerticalAlignment="Center" TextChanged="SearchTextBox_TextChanged"/>
+            <Button Background="#0097DA" Content="Сбросить" Click="ResetSearch_Click" VerticalAlignment="Center" Margin="20 -6 0 0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 23 0 0">
+
+            <Button Background="#0097DA" Content="Добавить сотрудника" Click="addButtonClick" VerticalAlignment="Center"/>
+
+        </StackPanel>
+
+
+        <Separator Height="1" Grid.Row="1" Background="#dae2ea" Margin="0 2 0 10"/>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Background="Transparent" Margin="10">
+            <ItemsControl x:Name="EmployeeList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border  BorderThickness="1" CornerRadius="5" Margin="5">
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding FullName}" FontWeight="Bold" FontSize="14"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="Должность: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding PositionName}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Телефон: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Phone}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Логин: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Login}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Пароль: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Password}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Количество заказов: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding OrderCount}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Выручка: " FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding TotalRevenue, StringFormat={}{0:F2} ₽}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,10,5,0">
+                                    <Button Background="#0097DA" Content="Редактировать" CommandParameter="{Binding EmployeeId}" Width="150" Click="EditEmployee_Click"/>
+                                    <Button Background="#0097DA" Content="Удалить" CommandParameter="{Binding EmployeeId}" Width="100" Margin="5,0,0,0" Click="DeleteEmployee_Click"/>
+                                </StackPanel>
+                                <Separator Height="1" Background="#dae2ea" Margin="0 5 0 0"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Grid x:Name="EmployeeForm" Visibility="Collapsed" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
+                <TextBlock Text="Имя" Margin="0,5"/>
+                <TextBox x:Name="FirstNameTextBox" Margin="0,5" Width="350"/>
+                <TextBlock Text="Отчество" Margin="0,5"/>
+                <TextBox x:Name="PatronymicTextBox" Margin="0,5" Width="350"/>
+                <TextBlock Text="Фамилия" Margin="0,5"/>
+                <TextBox x:Name="LastNameTextBox" Margin="0,5" Width="350"/>
+                <TextBlock Text="Должность" Margin="0,5"/>
+                <ComboBox x:Name="PositionComboBox" Margin="0,5" Width="350" DisplayMemberPath="PositionName" SelectedValuePath="PositionId"/>
+                <TextBlock Text="Телефон" Margin="0,5"/>
+                <TextBox x:Name="PhoneTextBox" Margin="0,5" Width="350"/>
+                <TextBlock Text="Логин" Margin="0,5"/>
+                <TextBox x:Name="LoginTextBox" Margin="0,5" Width="350"/>
+                <TextBlock Text="Пароль" Margin="0,5"/>
+                <TextBox x:Name="PasswordTextBox" Margin="0,5" Width="350"/>
+            </StackPanel>
+            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,15" Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Отмена" Background="#0097DA" Height="30" HorizontalAlignment="Center" Margin="10,0" Width="80" Click="CancelButton_Click"/>
+                    <Button Content="Сохранить" Background="#0097DA" Height="30" HorizontalAlignment="Center" Margin="10,0" Width="80" Click="SaveButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

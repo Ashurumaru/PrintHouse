@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4edf3864e85f4b7abfd14a4483306af8" Name="Diagram1">
+        <EntityTypeShape EntityType="PrintingHouseModel.Clients" Width="1.5" PointX="0.75" PointY="17.625" />
+        <EntityTypeShape EntityType="PrintingHouseModel.Departments" Width="1.5" PointX="1.5" PointY="13" />
+        <EntityTypeShape EntityType="PrintingHouseModel.Employees" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="PrintingHouseModel.OrderDetails" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="PrintingHouseModel.Orders" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="PrintingHouseModel.Positions" Width="1.5" PointX="1.5" PointY="15.25" />
+        <EntityTypeShape EntityType="PrintingHouseModel.Products" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="PrintingHouseModel.ProductTypes" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="PrintingHouseModel.PurchaseOrderDetails" Width="1.5" PointX="8.25" PointY="2.625" />
+        <EntityTypeShape EntityType="PrintingHouseModel.PurchaseOrders" Width="1.5" PointX="6" PointY="12.875" />
+        <EntityTypeShape EntityType="PrintingHouseModel.Suppliers" Width="1.5" PointX="3.75" PointY="12.75" />
+        <EntityTypeShape EntityType="PrintingHouseModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.75" />
+        <AssociationConnector Association="PrintingHouseModel.FK__Orders__ClientId__03F0984C" />
+        <AssociationConnector Association="PrintingHouseModel.FK__Employees__Depar__6C190EBB" />
+        <AssociationConnector Association="PrintingHouseModel.FK__Employees__Posit__6B24EA82" />
+        <AssociationConnector Association="PrintingHouseModel.FK__Orders__Employee__04E4BC85" />
+        <AssociationConnector Association="PrintingHouseModel.FK__OrderDeta__Order__07C12930" />
+        <AssociationConnector Association="PrintingHouseModel.FK__OrderDeta__Produ__08B54D69" />
+        <AssociationConnector Association="PrintingHouseModel.FK__Products__Produc__72C60C4A" />
+        <AssociationConnector Association="PrintingHouseModel.FK__PurchaseO__Produ__01142BA1" />
+        <AssociationConnector Association="PrintingHouseModel.FK__PurchaseO__Purch__00200768" />
+        <AssociationConnector Association="PrintingHouseModel.FK__PurchaseO__Suppl__7D439ABD" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

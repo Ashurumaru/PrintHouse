@@ -1,0 +1,101 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="DarkTheme" TargetType="Border">
+        <Setter Property="Background" Value="#2e3d60"/>
+    </Style>
+    <Style x:Key="DarkThemePath" TargetType="Path">
+        <Setter Property="Fill" Value="#45adff"/>
+    </Style>
+    <Style x:Key="DarkThemeText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#45adff"/>
+    </Style>
+    <Style x:Key="DarkTheme2" TargetType="Border">
+        <Setter Property="Background" Value="#1a2744"/>
+    </Style>
+    <Style x:Key="DarkThemePath2" TargetType="Path">
+        <Setter Property="Fill" Value="#45adff"/>
+    </Style>
+    <Style x:Key="DarkThemeText2" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#45adff"/>
+    </Style>
+    <Style BasedOn="{StaticResource MyAnimatedButtonStyle}" x:Key="MyAnimatedDarkButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#45adff"/>
+        <Setter Property="Foreground" Value="#f4f4fb"/>
+    </Style>
+    <Style BasedOn="{StaticResource MyTextBoxStyle}" x:Key="MyDarkTextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="#455781"/>
+    </Style>
+    <Style BasedOn="{StaticResource text}" x:Key="MyDarkText" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#45adff"/>
+    </Style>
+    <Style BasedOn="{StaticResource MyDarkText}" x:Key="MyDarkTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#45adff"/>
+    </Style>
+    <Style x:Key="MyDarkUniqueButton" TargetType="Button">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform CenterX="100" CenterY="10" ScaleX="1" ScaleY="1" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#d1ebff"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="17" Background="#008fff" BorderBrush="Transparent" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="True">
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)"
+                              To="0.9" Duration="0:0:0.09" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)"
+                              To="0.9" Duration="0:0:0.09" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="#45adff"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#455781"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="AlsoMyDarkUniqueButton" TargetType="Button">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform CenterX="100" CenterY="10" ScaleX="1" ScaleY="1" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#45adff"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="17" Background="#1a2744" BorderBrush="Transparent" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="True">
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)"
+                         To="0.9" Duration="0:0:0.09" />
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)"
+                         To="0.9" Duration="0:0:0.09" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

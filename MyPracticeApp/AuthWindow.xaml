@@ -1,0 +1,67 @@
+﻿<Window x:Class="MyPracticeApp.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.microsoft.com/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MyPracticeApp"
+        Title="Authentication" Height="500" Width="400"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Border Background="White" CornerRadius="10" Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 20 0">
+                <RadioButton x:Name="LoginTab" Content="Вход" IsChecked="True" GroupName="AuthTabs" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="0 0 20 0"/>
+                <RadioButton x:Name="RegisterTab" Content="Регистрация" GroupName="AuthTabs" Style="{StaticResource MaterialDesignTabRadioButton}"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel x:Name="LoginPanel" Visibility="{Binding ElementName=LoginTab, Path=IsChecked, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="Вход" FontSize="24" FontWeight="SemiBold" Margin="0 0 0 20"/>
+
+                    <TextBlock Text="Логин" Margin="0 5 0 0"/>
+                    <TextBox x:Name="LoginUsernameTextBox" Width="250" Margin="0 10 0 5"/>
+
+                    <TextBlock Text="Пароль" Margin="0 5 0 0"/>
+                    <PasswordBox x:Name="LoginPasswordBox" Width="250" Margin="0 10 0 5"/>
+
+                    <Button Background="#0097DA" Content="Войти" Width="250" Margin="20 50 0 10" Click="LogIn_Click" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <TextBlock x:Name="LoginErrorMessage" Foreground="Red" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel x:Name="RegisterPanel" Visibility="{Binding ElementName=RegisterTab, Path=IsChecked, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="Регистрация" FontSize="24" FontWeight="SemiBold" Margin="0 0 0 20"/>
+
+                    <TextBlock Text="Логин" Margin="0 5 0 0"/>
+                    <TextBox x:Name="RegisterUsernameTextBox" Width="250" Margin="0 10 0 5"/>
+
+                    <TextBlock Text="Пароль" Margin="0 5 0 0"/>
+                    <PasswordBox x:Name="RegisterPasswordBox" Width="250" Margin="0 10 0 5"/>
+
+                    <TextBlock Text="Имя" Margin="0 5 0 0"/>
+                    <TextBox x:Name="RegisterFirstNameTextBox" Width="250" Margin="0 10 0 5"/>
+
+                    <TextBlock Text="Фамилия" Margin="0 5 0 0"/>
+                    <TextBox x:Name="RegisterLastNameTextBox" Width="250" Margin="0 10 0 5"/>
+
+                    <TextBlock Text="Email" Margin="0 5 0 0"/>
+                    <TextBox x:Name="RegisterEmailTextBox" Width="250" Margin="0 10 0 5"/>
+
+                    <Button Background="#0097DA" Content="Зарегистрироваться" Width="250" Margin="20 0 0 10" Click="Register_Click" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <TextBlock x:Name="RegisterErrorMessage" Foreground="Red" Visibility="Collapsed"/>
+                </StackPanel>
+            </Grid>
+
+            <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="Black" Width="28" Height="28" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Close_Click">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище PrintingHouseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContactName" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="LegalAddress" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PositionId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductTypeId" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="ProductTypeId" />
+          </Key>
+          <Property Name="ProductTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetails">
+          <Key>
+            <PropertyRef Name="PurchaseOrderDetailId" />
+          </Key>
+          <Property Name="PurchaseOrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurchaseOrderId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="PurchaseOrders">
+          <Key>
+            <PropertyRef Name="PurchaseOrderId" />
+          </Key>
+          <Property Name="PurchaseOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierId" Type="int" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContactName" Type="varchar" MaxLength="100" />
+          <Property Name="ContactPhone" Type="varchar" MaxLength="15" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Employees__Depar__6C190EBB">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Posit__6B24EA82">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__07C12930">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__08B54D69">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__ClientId__03F0984C">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Employee__04E4BC85">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__Produc__72C60C4A">
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ProductTypeId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseO__Produ__01142BA1">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="PurchaseOrderDetails" Type="Self.PurchaseOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseO__Purch__00200768">
+          <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="0..1" />
+          <End Role="PurchaseOrderDetails" Type="Self.PurchaseOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrders">
+              <PropertyRef Name="PurchaseOrderId" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetails">
+              <PropertyRef Name="PurchaseOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseO__Suppl__7D439ABD">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierId" />
+            </Principal>
+            <Dependent Role="PurchaseOrders">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PrintingHouseModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderDetails" EntityType="Self.PurchaseOrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Employees__Depar__6C190EBB" Association="Self.FK__Employees__Depar__6C190EBB">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Posit__6B24EA82" Association="Self.FK__Employees__Posit__6B24EA82">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__07C12930" Association="Self.FK__OrderDeta__Order__07C12930">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__08B54D69" Association="Self.FK__OrderDeta__Produ__08B54D69">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__ClientId__03F0984C" Association="Self.FK__Orders__ClientId__03F0984C">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Employee__04E4BC85" Association="Self.FK__Orders__Employee__04E4BC85">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__Produc__72C60C4A" Association="Self.FK__Products__Produc__72C60C4A">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseO__Produ__01142BA1" Association="Self.FK__PurchaseO__Produ__01142BA1">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PurchaseOrderDetails" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseO__Purch__00200768" Association="Self.FK__PurchaseO__Purch__00200768">
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+            <End Role="PurchaseOrderDetails" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseO__Suppl__7D439ABD" Association="Self.FK__PurchaseO__Suppl__7D439ABD">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrintingHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PrintingHouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="PrintingHouseModel.Clients" />
+          <EntitySet Name="Departments" EntityType="PrintingHouseModel.Departments" />
+          <EntitySet Name="Employees" EntityType="PrintingHouseModel.Employees" />
+          <EntitySet Name="OrderDetails" EntityType="PrintingHouseModel.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="PrintingHouseModel.Orders" />
+          <EntitySet Name="Positions" EntityType="PrintingHouseModel.Positions" />
+          <EntitySet Name="Products" EntityType="PrintingHouseModel.Products" />
+          <EntitySet Name="ProductTypes" EntityType="PrintingHouseModel.ProductTypes" />
+          <EntitySet Name="PurchaseOrderDetails" EntityType="PrintingHouseModel.PurchaseOrderDetails" />
+          <EntitySet Name="PurchaseOrders" EntityType="PrintingHouseModel.PurchaseOrders" />
+          <EntitySet Name="Suppliers" EntityType="PrintingHouseModel.Suppliers" />
+          <EntitySet Name="sysdiagrams" EntityType="PrintingHouseModel.sysdiagrams" />
+          <AssociationSet Name="FK__Orders__ClientId__03F0984C" Association="PrintingHouseModel.FK__Orders__ClientId__03F0984C">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Depar__6C190EBB" Association="PrintingHouseModel.FK__Employees__Depar__6C190EBB">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Posit__6B24EA82" Association="PrintingHouseModel.FK__Employees__Posit__6B24EA82">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Employee__04E4BC85" Association="PrintingHouseModel.FK__Orders__Employee__04E4BC85">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__07C12930" Association="PrintingHouseModel.FK__OrderDeta__Order__07C12930">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__08B54D69" Association="PrintingHouseModel.FK__OrderDeta__Produ__08B54D69">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__Produc__72C60C4A" Association="PrintingHouseModel.FK__Products__Produc__72C60C4A">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseO__Produ__01142BA1" Association="PrintingHouseModel.FK__PurchaseO__Produ__01142BA1">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PurchaseOrderDetails" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseO__Purch__00200768" Association="PrintingHouseModel.FK__PurchaseO__Purch__00200768">
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+            <End Role="PurchaseOrderDetails" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseO__Suppl__7D439ABD" Association="PrintingHouseModel.FK__PurchaseO__Suppl__7D439ABD">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LegalAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="PrintingHouseModel.FK__Orders__ClientId__03F0984C" FromRole="Clients" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="PrintingHouseModel.FK__Employees__Depar__6C190EBB" FromRole="Departments" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Departments" Relationship="PrintingHouseModel.FK__Employees__Depar__6C190EBB" FromRole="Employees" ToRole="Departments" />
+          <NavigationProperty Name="Positions" Relationship="PrintingHouseModel.FK__Employees__Posit__6B24EA82" FromRole="Employees" ToRole="Positions" />
+          <NavigationProperty Name="Orders" Relationship="PrintingHouseModel.FK__Orders__Employee__04E4BC85" FromRole="Employees" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Orders" Relationship="PrintingHouseModel.FK__OrderDeta__Order__07C12930" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="PrintingHouseModel.FK__OrderDeta__Produ__08B54D69" FromRole="OrderDetails" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="PrintingHouseModel.FK__Orders__ClientId__03F0984C" FromRole="Orders" ToRole="Clients" />
+          <NavigationProperty Name="Employees" Relationship="PrintingHouseModel.FK__Orders__Employee__04E4BC85" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="OrderDetails" Relationship="PrintingHouseModel.FK__OrderDeta__Order__07C12930" FromRole="Orders" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="PrintingHouseModel.FK__Employees__Posit__6B24EA82" FromRole="Positions" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductTypeId" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="OrderDetails" Relationship="PrintingHouseModel.FK__OrderDeta__Produ__08B54D69" FromRole="Products" ToRole="OrderDetails" />
+          <NavigationProperty Name="ProductTypes" Relationship="PrintingHouseModel.FK__Products__Produc__72C60C4A" FromRole="Products" ToRole="ProductTypes" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="PrintingHouseModel.FK__PurchaseO__Produ__01142BA1" FromRole="Products" ToRole="PurchaseOrderDetails" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="ProductTypeId" />
+          </Key>
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="PrintingHouseModel.FK__Products__Produc__72C60C4A" FromRole="ProductTypes" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetails">
+          <Key>
+            <PropertyRef Name="PurchaseOrderDetailId" />
+          </Key>
+          <Property Name="PurchaseOrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseOrderId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Products" Relationship="PrintingHouseModel.FK__PurchaseO__Produ__01142BA1" FromRole="PurchaseOrderDetails" ToRole="Products" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="PrintingHouseModel.FK__PurchaseO__Purch__00200768" FromRole="PurchaseOrderDetails" ToRole="PurchaseOrders" />
+        </EntityType>
+        <EntityType Name="PurchaseOrders">
+          <Key>
+            <PropertyRef Name="PurchaseOrderId" />
+          </Key>
+          <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierId" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="PrintingHouseModel.FK__PurchaseO__Purch__00200768" FromRole="PurchaseOrders" ToRole="PurchaseOrderDetails" />
+          <NavigationProperty Name="Suppliers" Relationship="PrintingHouseModel.FK__PurchaseO__Suppl__7D439ABD" FromRole="PurchaseOrders" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="PrintingHouseModel.FK__PurchaseO__Suppl__7D439ABD" FromRole="Suppliers" ToRole="PurchaseOrders" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Orders__ClientId__03F0984C">
+          <End Type="PrintingHouseModel.Clients" Role="Clients" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Depar__6C190EBB">
+          <End Type="PrintingHouseModel.Departments" Role="Departments" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Posit__6B24EA82">
+          <End Type="PrintingHouseModel.Positions" Role="Positions" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Employee__04E4BC85">
+          <End Type="PrintingHouseModel.Employees" Role="Employees" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__07C12930">
+          <End Type="PrintingHouseModel.Orders" Role="Orders" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__08B54D69">
+          <End Type="PrintingHouseModel.Products" Role="Products" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__Produc__72C60C4A">
+          <End Type="PrintingHouseModel.ProductTypes" Role="ProductTypes" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ProductTypeId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseO__Produ__01142BA1">
+          <End Type="PrintingHouseModel.Products" Role="Products" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.PurchaseOrderDetails" Role="PurchaseOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseO__Purch__00200768">
+          <End Type="PrintingHouseModel.PurchaseOrders" Role="PurchaseOrders" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.PurchaseOrderDetails" Role="PurchaseOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrders">
+              <PropertyRef Name="PurchaseOrderId" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetails">
+              <PropertyRef Name="PurchaseOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseO__Suppl__7D439ABD">
+          <End Type="PrintingHouseModel.Suppliers" Role="Suppliers" Multiplicity="0..1" />
+          <End Type="PrintingHouseModel.PurchaseOrders" Role="PurchaseOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierId" />
+            </Principal>
+            <Dependent Role="PurchaseOrders">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PrintingHouseModelContainer" CdmEntityContainer="PrintingHouseEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="LegalAddress" ColumnName="LegalAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="PrintingHouseModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="PrintingHouseModel.ProductTypes">
+              <MappingFragment StoreEntitySet="ProductTypes">
+                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrderDetails">
+            <EntityTypeMapping TypeName="PrintingHouseModel.PurchaseOrderDetails">
+              <MappingFragment StoreEntitySet="PurchaseOrderDetails">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+                <ScalarProperty Name="PurchaseOrderDetailId" ColumnName="PurchaseOrderDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrders">
+            <EntityTypeMapping TypeName="PrintingHouseModel.PurchaseOrders">
+              <MappingFragment StoreEntitySet="PurchaseOrders">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="PrintingHouseModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PrintingHouseModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
